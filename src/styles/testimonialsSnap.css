@@ -1,0 +1,112 @@
+/* ===== Testimonials Page Snap Scrolling ===== */
+
+.testimonials-snap-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  z-index: 35;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.testimonials-snap-container::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+/* ===== Snap Sections ===== */
+.testimonials-snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: 100vh;
+  height: 100vh;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding-top: 4.5rem;
+  padding-bottom: 1rem;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Desktop-only sections: hidden by default (mobile-first) */
+.testimonials-snap-section.testimonials-desktop-only {
+  display: none;
+  min-height: 0;
+  height: 0;
+  max-height: 0;
+  padding: 0;
+  overflow: hidden;
+  scroll-snap-align: none;
+}
+
+@media (min-width: 1024px) {
+  .testimonials-snap-section.testimonials-desktop-only {
+    display: flex;
+    min-height: 100vh;
+    height: 100vh;
+    max-height: 100vh;
+    padding-top: 4.5rem;
+    padding-bottom: 1rem;
+    overflow: hidden;
+    scroll-snap-align: start;
+  }
+}
+
+/* Mobile-only sections: visible by default, hidden on desktop */
+@media (min-width: 1024px) {
+  .testimonials-snap-section.testimonials-mobile-only {
+    display: none;
+    min-height: 0;
+    height: 0;
+    max-height: 0;
+    padding: 0;
+    overflow: hidden;
+    scroll-snap-align: none;
+  }
+}
+
+/* Footer section - full height snap section */
+.testimonials-snap-section.testimonials-snap-footer {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* Responsive padding adjustments */
+@media (max-width: 768px) {
+  .testimonials-snap-section {
+    padding-top: 4rem;
+    padding-bottom: 0.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonials-snap-section {
+    padding-top: 3.75rem;
+    padding-bottom: 0.125rem;
+  }
+}
+
+/* 2 המלצות אחת על השנייה במסכים קטנים מ-400 פיקסל ואנכיים */
+@media (max-width: 400px) and (orientation: portrait) {
+  .testimonials-mobile-only > div {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+  .testimonials-mobile-only > div > div {
+    margin-bottom: 0 !important;
+  }
+  /* שנה את מפת הרינדור כך שכל סקשן יציג 2 קלפים */
+}

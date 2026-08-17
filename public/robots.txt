@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Disallow: /ask-ai
+
+# Sitemaps
+Sitemap: https://catapp.it.com/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
+
+# Google specific
+User-agent: Googlebot
+Allow: /
+Disallow: /ask-ai

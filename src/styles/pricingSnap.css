@@ -1,0 +1,121 @@
+/* ===== Pricing Page Snap Scrolling ===== */
+
+.pricing-snap-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  z-index: 35;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.pricing-snap-container::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+/* ===== Snap Sections ===== */
+.pricing-snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: 100vh;
+  height: 100vh;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding-top: 4.5rem;
+  padding-bottom: 1rem;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Desktop-only sections: hidden by default (mobile-first) */
+.pricing-snap-section.pricing-desktop-only {
+  display: none;
+  min-height: 0;
+  height: 0;
+  max-height: 0;
+  padding: 0;
+  overflow: hidden;
+  scroll-snap-align: none;
+}
+
+@media (min-width: 1024px) {
+  .pricing-snap-section.pricing-desktop-only {
+    display: flex;
+    min-height: 100vh;
+    height: 100vh;
+    max-height: 100vh;
+    padding-top: 4.5rem;
+    padding-bottom: 1rem;
+    overflow: hidden;
+    scroll-snap-align: start;
+  }
+}
+
+/* Mobile-only sections: visible by default, hidden on desktop */
+@media (min-width: 1024px) {
+  .pricing-snap-section.pricing-mobile-only {
+    display: none;
+    min-height: 0;
+    height: 0;
+    max-height: 0;
+    padding: 0;
+    overflow: hidden;
+    scroll-snap-align: none;
+  }
+}
+
+/* Footer section - full height snap section */
+.pricing-snap-section.pricing-snap-footer {
+  padding-top: 0;
+  padding-bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Responsive padding adjustments */
+@media (max-width: 768px) {
+  .pricing-snap-section {
+    padding-top: 4rem;
+    padding-bottom: 0.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pricing-snap-section {
+    padding-top: 3.75rem;
+    padding-bottom: 0.125rem;
+  }
+}
+
+/* Enlarge mobile phone text/elements (≤768px) */
+@media (max-width: 768px) {
+  .pricing-snap-container .pricing-snap-section h1,
+  .pricing-snap-container .pricing-snap-section h2 {
+    font-size: 1.45rem;
+    line-height: 1.3;
+  }
+  .pricing-snap-container .pricing-snap-section h3,
+  .pricing-snap-container .pricing-snap-section h4 {
+    font-size: 1.1rem;
+  }
+  .pricing-snap-container .pricing-snap-section p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  .pricing-snap-container .pricing-snap-section li span {
+    font-size: 0.85rem;
+  }
+}

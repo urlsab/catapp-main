@@ -1,0 +1,98 @@
+/* ===== Contact Page Snap Scrolling ===== */
+
+.contact-snap-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  z-index: 35;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.contact-snap-container::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+/* ===== Snap Sections ===== */
+.contact-snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: 100vh;
+  height: 100vh;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding-top: 4.5rem;
+  padding-bottom: 1rem;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Desktop-only sections */
+.contact-snap-section.contact-desktop-only {
+  display: none;
+  min-height: 0;
+  height: 0;
+  max-height: 0;
+  padding: 0;
+  overflow: hidden;
+  scroll-snap-align: none;
+}
+
+@media (min-width: 1024px) {
+  .contact-snap-section.contact-desktop-only {
+    display: flex;
+    min-height: 100vh;
+    height: 100vh;
+    max-height: 100vh;
+    padding-top: 4.5rem;
+    padding-bottom: 1rem;
+    overflow: hidden;
+    scroll-snap-align: start;
+  }
+}
+
+/* Mobile-only sections */
+@media (min-width: 1024px) {
+  .contact-snap-section.contact-mobile-only {
+    display: none;
+    min-height: 0;
+    height: 0;
+    max-height: 0;
+    padding: 0;
+    overflow: hidden;
+    scroll-snap-align: none;
+  }
+}
+
+/* Footer section - full height snap section */
+.contact-snap-section.contact-snap-footer {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* Responsive padding */
+@media (max-width: 768px) {
+  .contact-snap-section {
+    padding-top: 4rem;
+    padding-bottom: 0.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-snap-section {
+    padding-top: 3.75rem;
+    padding-bottom: 0.125rem;
+  }
+}

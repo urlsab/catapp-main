@@ -1,0 +1,201 @@
+@keyframes client-carousel {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-client-carousel {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  width: max-content;
+  /* Force LTR so logos 1-7 appear left→right regardless of page RTL direction */
+  direction: ltr;
+  animation: client-carousel 18s linear infinite;
+  will-change: transform;
+  transform: translateZ(0); /* GPU acceleration – prevents repaint glitch on loop */
+  backface-visibility: hidden;
+}
+
+.animate-client-carousel:hover {
+  animation-play-state: paused;
+}
+
+.clients-carousel-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  /* direction: ltr ensures mask gradient is applied left→right correctly */
+  direction: ltr;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+/* ===== Snap Scrolling Container ===== */
+.home-snap-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  z-index: 35;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbar but keep scroll */
+.home-snap-container::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+.home-snap-container {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* ===== Snap Sections ===== */
+.home-snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: 100vh;
+  height: 100vh;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding-top: 4.5rem;
+  padding-bottom: 1rem;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.home-snap-section.snap-hero {
+  padding-top: 4.5rem;
+  padding-bottom: 0;
+}
+
+/* Mobile-only hero sections: hide on desktop via snap override */
+@media (min-width: 1024px) {
+  .home-snap-section.snap-hero-mobile-only {
+    display: none;
+    min-height: 0;
+    height: 0;
+    max-height: 0;
+    padding: 0;
+    overflow: hidden;
+    scroll-snap-align: none;
+  }
+}
+
+/* Desktop-only hero section: hide on mobile */
+.home-snap-section.snap-hero-desktop-only {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .home-snap-section.snap-hero-desktop-only {
+    display: flex;
+  }
+}
+
+.home-snap-section.snap-text-center {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.home-snap-section.snap-compact {
+  padding-top: 4.5rem;
+  padding-bottom: 0.5rem;
+}
+
+/* Footer section - full height snap section */
+.home-snap-section.snap-footer {
+  padding-top: 0;
+  padding-bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .home-snap-section {
+    padding-top: 4rem;
+    padding-bottom: 0.25rem;
+  }
+  .home-snap-section.snap-hero {
+    padding-top: 4rem;
+  }
+  .home-snap-section.snap-compact {
+    padding-top: 3.5rem;
+    padding-bottom: 0.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-snap-section {
+    padding-top: 3.5rem;
+    padding-bottom: 0.125rem;
+  }
+  .home-snap-section.snap-hero {
+    padding-top: 3.75rem;
+  }
+  .home-snap-section.snap-compact {
+    padding-top: 3rem;
+    padding-bottom: 0.125rem;
+  }
+}
+
+/* Scale up elements for very small mobile screens (≤400px) */
+@media (max-width: 400px) {
+  .home-snap-container .home-snap-section h1 {
+    font-size: 1.85rem;
+    line-height: 1.25;
+  }
+  .home-snap-container .home-snap-section h2 {
+    font-size: 1.35rem;
+  }
+  .home-snap-container .home-snap-section p {
+    font-size: 0.95rem;
+  }
+  .home-snap-container .home-snap-section img {
+    max-width: 100%;
+  }
+
+  /* Footer adjustments for very small screens */
+  .footer-wrapper .footer-heading {
+    font-size: 1rem;
+  }
+  .footer-wrapper .footer-link {
+    font-size: 0.8rem;
+  }
+  .footer-wrapper .footer-text {
+    font-size: 0.8rem;
+  }
+  .footer-wrapper .footer-bottom-link {
+    font-size: 0.7rem;
+  }
+}
+
+/* Enlarge mobile phone text/elements (≤768px) */
+@media (max-width: 768px) {
+  .home-snap-container .home-snap-section h1 {
+    font-size: 2rem;
+    line-height: 1.3;
+  }
+  .home-snap-container .home-snap-section h2 {
+    font-size: 1.45rem;
+  }
+  .home-snap-container .home-snap-section h3 {
+    font-size: 1.15rem;
+  }
+  .home-snap-container .home-snap-section p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  .home-snap-container .home-snap-section span {
+    line-height: 1.4;
+  }
+}

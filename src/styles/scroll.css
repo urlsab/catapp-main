@@ -1,0 +1,97 @@
+/* Smooth scroll with fixed pixel increments for main page */
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  scroll-padding-top: 0;
+}
+
+body {
+  overflow-x: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+/* Scroll area configuration for fixed pixel scrolling */
+.scroll-area {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 2rem 0;
+  scroll-margin-top: 0;
+}
+
+/* Ensure smooth transitions */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .scroll-area {
+    padding: 1rem 0;
+    min-height: 100vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .scroll-area {
+    padding: 0.5rem 0;
+  }
+}
+
+.scroll-arrow {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  /* cursor: pointer; */
+  animation: bounce 2s infinite;
+  
+  border: none;
+  padding: 8px 16px;
+  font-size: 28px;
+  color: white;
+  transition: all 0.3s;
+  z-index: 50;
+  border-radius: 20px;
+  /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); */
+}
+
+.scroll-arrow:hover {
+
+  transform: translateX(-50%) translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.scroll-arrow:hover {
+  opacity: 0.7;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-5px);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
